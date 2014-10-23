@@ -249,7 +249,8 @@ app_server_security_group = utils.create_security_group(
             IpProtocol='tcp', SourceSecurityGroupId=Ref(sg),
             FromPort=80, ToPort=80
         )
-        for sg in [app_server_load_balancer_security_group]
+        for sg in [app_server_load_balancer_security_group,
+                   bastion_security_group]
     ],
     egress=[
         ec2.SecurityGroupRule(
@@ -277,7 +278,8 @@ tile_server_security_group = utils.create_security_group(
             IpProtocol='tcp', SourceSecurityGroupId=Ref(sg),
             FromPort=80, ToPort=80
         )
-        for sg in [tile_server_load_balancer_security_group]
+        for sg in [tile_server_load_balancer_security_group,
+                   bastion_security_group]
     ],
     egress=[
         ec2.SecurityGroupRule(
