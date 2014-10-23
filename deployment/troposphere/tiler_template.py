@@ -92,7 +92,7 @@ tile_server_auto_scaling_group = t.add_resource(asg.AutoScalingGroup(
         ]
     ),
     VPCZoneIdentifier=Ref(tile_server_subnets_param),
-    Tags=[asg.Tag('Name', 'asgTileServer', True)]
+    Tags=[asg.Tag('Name', 'TileServer', True)]
 ))
 
 if __name__ == '__main__':

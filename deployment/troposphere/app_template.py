@@ -92,7 +92,7 @@ app_server_auto_scaling_group = t.add_resource(asg.AutoScalingGroup(
         ]
     ),
     VPCZoneIdentifier=Ref(app_server_subnets_param),
-    Tags=[asg.Tag('Name', 'asgAppServer', True)]
+    Tags=[asg.Tag('Name', 'AppServer', True)]
 ))
 
 if __name__ == '__main__':
