@@ -241,9 +241,10 @@ app_server_security_group = utils.create_security_group(
     'Enables access to application servers', vpc,
     ingress=[
         ec2.SecurityGroupRule(
-            IpProtocol='tcp', CidrIp=utils.ALLOW_ALL_CIDR, FromPort=p, ToPort=p
+            IpProtocol='tcp', SourceSecurityGroupId=Ref(sg),
+            FromPort=22, ToPort=22
         )
-        for p in [22]
+        for sg in [bastion_security_group]
     ] + [
         ec2.SecurityGroupRule(
             IpProtocol='tcp', SourceSecurityGroupId=Ref(sg),
@@ -270,9 +271,10 @@ tile_server_security_group = utils.create_security_group(
     'Enables access to tile servers', vpc,
     ingress=[
         ec2.SecurityGroupRule(
-            IpProtocol='tcp', CidrIp=utils.ALLOW_ALL_CIDR, FromPort=p, ToPort=p
+            IpProtocol='tcp', SourceSecurityGroupId=Ref(sg),
+            FromPort=22, ToPort=22
         )
-        for p in [22]
+        for sg in [bastion_security_group]
     ] + [
         ec2.SecurityGroupRule(
             IpProtocol='tcp', SourceSecurityGroupId=Ref(sg),
