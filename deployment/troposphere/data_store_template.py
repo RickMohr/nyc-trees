@@ -99,10 +99,20 @@ cache_cluster_subnet_group = t.add_resource(ec.SubnetGroup(
     SubnetIds=Ref(data_store_server_subnets_param)
 ))
 
+cache_cluster_parameter_group = t.add_resource(ec.ParameterGroup(
+    'ecpgCacheCluster',
+    CacheParameterGroupFamily='redis2.8',
+    Description='Parameter group for the ElastiCache instances',
+    Properties={
+        "appendonly": "yes"
+    }
+))
+
 cache_cluster = t.add_resource(ec.CacheCluster(
     'CacheCluster',
     AutoMinorVersionUpgrade=True,
     CacheNodeType=Ref(cache_cluster_instance_type_param),
+    CacheParameterGroupName=Ref(cache_cluster_parameter_group),
     CacheSubnetGroupName=Ref(cache_cluster_subnet_group),
     ClusterName='nyctrees',
     Engine='redis',
