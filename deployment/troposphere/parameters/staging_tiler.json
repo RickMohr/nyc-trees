@@ -21,7 +21,7 @@
   },
   {
     "ParameterKey": "elbTileServer",
-    "ParameterValue": "elbTileServer-403870799.us-east-1.elb.amazonaws.com"
+    "ParameterValue": "elbTileServer"
   },
   {
     "ParameterKey": "sgTileServer",

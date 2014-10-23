@@ -44,8 +44,7 @@ app_server_instance_type_param = t.add_parameter(Parameter(
 
 app_server_load_balancer = t.add_parameter(Parameter(
     'elbAppServer', Type='String',
-    Description='Physical resource ID of an '
-                'AWS::ElasticLoadBalancing::LoadBalancer'
+    Description='Name of an AWS::ElasticLoadBalancing::LoadBalancer'
 ))
 
 app_server_security_group = t.add_parameter(Parameter(

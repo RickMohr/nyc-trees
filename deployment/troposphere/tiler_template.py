@@ -44,8 +44,7 @@ tile_server_instance_type_param = t.add_parameter(Parameter(
 
 tile_server_load_balancer = t.add_parameter(Parameter(
     'elbTileServer', Type='String',
-    Description='Physical resource ID of an '
-                'AWS::ElasticLoadBalancing::LoadBalancer'
+    Description='Name of an AWS::ElasticLoadBalancing::LoadBalancer'
 ))
 
 tile_server_security_group = t.add_parameter(Parameter(

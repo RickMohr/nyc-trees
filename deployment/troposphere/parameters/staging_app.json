@@ -21,7 +21,7 @@
   },
   {
     "ParameterKey": "elbAppServer",
-    "ParameterValue": "elbAppServer-753195556.us-east-1.elb.amazonaws.com"
+    "ParameterValue": "elbAppServer"
   },
   {
     "ParameterKey": "sgAppServer",
