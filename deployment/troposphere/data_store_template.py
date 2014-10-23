@@ -41,7 +41,7 @@ database_server_master_password_param = t.add_parameter(Parameter(
 ))
 
 cache_cluster_instance_type_param = t.add_parameter(Parameter(
-    'CacheClusterInstanceType', Type='String', Default='cache.t2.micro',
+    'CacheClusterInstanceType', Type='String', Default='cache.m1.small',
     Description='Cache cluster ElastiCache instances type',
     AllowedValues=utils.ELASTICACHE_INSTANCE_TYPES,
     ConstraintDescription='must be a valid ElastiCache instance type.'

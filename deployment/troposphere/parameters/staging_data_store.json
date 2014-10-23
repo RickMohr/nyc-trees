@@ -21,7 +21,7 @@
   },
   {
     "ParameterKey": "CacheClusterInstanceType",
-    "ParameterValue": "cache.t2.micro"
+    "ParameterValue": "cache.m1.small"
   },
   {
     "ParameterKey": "sgDatabaseServer",

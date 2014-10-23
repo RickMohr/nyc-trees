@@ -25,7 +25,7 @@ RDS_INSTANCE_TYPES = [
     'db.m3.large'
 ]
 ELASTICACHE_INSTANCE_TYPES = [
-    'cache.t2.micro'
+    'cache.m1.small'
 ]
 
 
