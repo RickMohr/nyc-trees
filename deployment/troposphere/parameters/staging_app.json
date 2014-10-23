@@ -29,6 +29,6 @@
   },
   {
     "ParameterKey": "AppServerSubnets",
-    "ParameterValue": "subnet-c7fb5bb0,subnet-cbee2d92"
+    "ParameterValue": "subnet-c6fb5bb1,subnet-c8ee2d91"
   }
 ]

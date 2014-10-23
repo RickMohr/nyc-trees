@@ -410,7 +410,7 @@ t.add_output([
                     'servers',
         Value=Join(',', [
             Ref(s)
-            for s in public_subnets
+            for s in private_subnets
         ])
     ),
     Output(
@@ -418,7 +418,7 @@ t.add_output([
         Description='A list of subnets to associate with the tile servers',
         Value=Join(',', [
             Ref(s)
-            for s in public_subnets
+            for s in private_subnets
         ])
     ),
     Output(
