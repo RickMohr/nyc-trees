@@ -8,6 +8,9 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
+from django_tinsel.decorators import render_template
+from django_tinsel.utils import decorate as do
+
 from apps.core.models import User
 from apps.users.forms import ProfileSettingsForm
 
@@ -17,7 +20,7 @@ def user_detail_redirect(request):
         reverse('user_detail', kwargs={'username': request.user.username}))
 
 
-def user_detail(request, username):
+def user_profile_context(request, username):
     user = get_object_or_404(User, username=username)
     its_me = (user.id == request.user.id)
 
@@ -25,10 +28,6 @@ def user_detail(request, username):
         # Private profile acts like a missing page to others
         raise Http404()
 
-    return _render_user_profile(request, user, its_me)
-
-
-def _render_user_profile(request, user, its_me):
     context = {
         'user': user,
         'viewing_own_profile': its_me,
@@ -44,17 +43,17 @@ def _render_user_profile(request, user, its_me):
                               RequestContext(request))
 
 
-def profile_settings(request):
+def profile_settings_context(request):
     form = ProfileSettingsForm(instance=request.user, label_suffix='')
     form.fields['opt_in_events_info'].label = 'Yes'
     form.fields['opt_in_stewardship_info'].label = 'Yes'
+
     context = {
         'form': form,
         'privacy_categories': _get_privacy_categories(form),
         'username': request.user.username,
     }
-    return render_to_response('users/settings.html', context,
-                              RequestContext(request))
+    return context
 
 
 def _get_privacy_categories(form):
@@ -80,12 +79,12 @@ def _get_privacy_categories(form):
     ]
 
 
-def update_profile_settings(request):
+def update_profile_settings_view(request):
     form = ProfileSettingsForm(request.POST, instance=request.user)
     # It's not possible to create invalid data with this form,
     # so don't check form.is_valid()
     form.save()
-    return _render_user_profile(request, request.user, its_me=True)
+    return user_profile_context(request, request.user.username)
 
 
 def update_user(request, username):
@@ -111,3 +110,16 @@ def start_map_for_reservation_job(request, username):
 def start_map_for_tool_depots_job(request, username):
     # TODO: implement
     pass
+
+
+user_detail = do(
+    render_template('users/profile.html'),
+    user_profile_context)
+
+user_settings = do(
+    render_template('users/settings.html'),
+    profile_settings_context)
+
+update_profile_settings = do(
+    render_template('users/profile.html'),
+    update_profile_settings_view)
