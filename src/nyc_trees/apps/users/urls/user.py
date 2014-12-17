@@ -13,6 +13,8 @@ urlpatterns = patterns(
 
     url(r'settings/$', r.user_profile_settings, name='user_profile_settings'),
 
+    url(r'settings/privacy$', r.set_privacy, name='set_privacy'),
+
     url(r'^achievements/$', r.achievements, name='achievements'),
 
     url(r'^training/$', r.training, name='training'),

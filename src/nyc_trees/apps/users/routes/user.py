@@ -11,16 +11,18 @@ from django_tinsel.utils import decorate as do
 from apps.users.views import user as v
 
 render_user_template = render_template('users/profile.html')
+render_settings_template = render_template('users/settings.html')
 
 user_detail_redirect = do(login_required,
                           route(GET=v.user_detail_redirect))
 
 user_profile_settings = do(
     login_required,
-    route(GET=do(render_template('users/settings.html'),
-                 v.profile_settings),
-          POST=do(render_user_template,
-                  v.update_profile_settings)))
+    render_settings_template,
+    route(GET=v.profile_settings,
+          POST=v.update_profile_settings))
+
+set_privacy = do(login_required, route(POST=v.set_privacy))
 
 achievements = do(login_required,
                   route(GET=do(render_template('users/achievement.html'),
