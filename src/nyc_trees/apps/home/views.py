@@ -3,9 +3,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 from __future__ import division
 
-from apps.core.views import map_legend
 from apps.home.training import training_summary
-from apps.survey.layer_context import get_context_for_progress_layer
 from apps.users import user_profile_context
 from apps.event.event_list import immediate_events
 
@@ -22,12 +20,6 @@ def home_page(request):
                              .as_context(request))
 
     context.update({'immediate_events': immediate_events_list})
-    return context
-
-
-def progress_page(request):
-    context = map_legend(request)
-    context['layer'] = get_context_for_progress_layer(request)
     return context
 
 
