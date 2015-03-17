@@ -67,6 +67,8 @@ printable_event_map = do(
     route(GET=do(render_template('event/printable_event_map.html'),
                  v.printable_event_map)))
 
+event_map_pdf = do(group_request, route(GET=do(v.map_pdf)))
+
 event_admin_check_in_page = group_admin_do(
     route(GET=do(render_template('event/admin_checkin.html'),
                  v.event_admin_check_in_page)))

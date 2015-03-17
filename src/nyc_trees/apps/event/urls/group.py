@@ -39,6 +39,9 @@ urlpatterns = patterns(
         '(?P<event_slug>[\w-]+)/printable-map/$',
         printable_event_map, name='printable_event_map'),
 
+    url(r'^(?P<group_slug>[\w-]+)/event/(?P<event_slug>[\w-]+)/map-pdf/$',
+        event_map_pdf, name='event_map_pdf'),
+
     url(r'^(?P<group_slug>[\w-]+)/event/(?P<event_slug>[\w-]+)/checkin/$',
         event_admin_check_in_page, name='event_admin_check_in_page'),
 

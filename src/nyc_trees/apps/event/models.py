@@ -124,6 +124,10 @@ class Event(NycModel, models.Model):
     def get_shareable_url(self, request):
         return request.build_absolute_uri(self.get_absolute_url())
 
+    @property
+    def map_pdf_filename(self):
+        return "event_maps/%s.pdf" % self.slug
+
     class Meta:
         unique_together = (("group", "slug"), ("group", "title"))
 
