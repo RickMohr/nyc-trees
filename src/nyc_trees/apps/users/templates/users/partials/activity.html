@@ -14,7 +14,7 @@
     {% if show_contributions %}
     <section class="contributions">
         {% with title=contributions_title section_id="contributions" public=user.contributions_are_public %}
-            {% include "users/partials/profile/contributions.html"%}
+            {% include "home/partials/contributions.html"%}
         {% endwith %}
     </section>
     {% endif %}
