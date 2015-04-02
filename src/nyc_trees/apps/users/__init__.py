@@ -22,6 +22,9 @@ def user_profile_context(user, its_me=True, home_page=True):
     block_count = user.survey_set.distinct('blockface').count()
     tree_count = get_user_tree_count(user)
     species_count = get_user_species_count(user)
+    event_count = user.eventregistration_set \
+        .filter(did_attend=True) \
+        .count()
 
     # In order to show the tree count in a "ticker" we need to break it up
     # into digits and pad it with zeroes.
@@ -53,7 +56,7 @@ def user_profile_context(user, its_me=True, home_page=True):
             'tree': tree_count,
             'tree_digits': tree_digits,
             'species': species_count,
-            'event': -999
+            'event': event_count
         },
         'achievements': [achievements[key]
                          for key in user_achievements if key in achievements]
